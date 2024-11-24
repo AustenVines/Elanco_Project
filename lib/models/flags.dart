@@ -1,6 +1,6 @@
 //SvgPicture.network("https://upload.wikimedia.org/wikipedia/commons/3/36/Flag_of_Albania.svg")
 
-import 'package:flutter/material.dart'; // Required for the Image widget
+import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'flags.g.dart';
