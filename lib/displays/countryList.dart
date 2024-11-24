@@ -1,7 +1,9 @@
+import 'package:elanco_api_project/services/gettingData.dart';
 import 'package:flutter/material.dart';
 import '../models/country.dart';
 import '../models/population.dart';
 import 'country_details.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class CountryList extends StatefulWidget {
   final List<Country> countries;
@@ -57,8 +59,28 @@ class _CountryListState extends State<CountryList> {
 
               return ListTile(
                 title: Text(country.name ?? 'Unknown'),
-                subtitle: Text('Capital: ${country.capital ?? 'N/A'}'),
-                trailing: Text(('iso2: ${country.iso2} and Iso3: ${country.iso3}')),
+                subtitle: Text(
+                  'Capital: ${country.capital ?? 'N/A'}\n'
+                      'ISO2: ${country.iso2 ?? 'N/A'} | ISO3: ${country.iso3 ?? 'N/A'}',
+                ),
+                trailing: FutureBuilder<String?>(
+                  future: fetchFlag(country.name ?? ''),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return CircularProgressIndicator(); // Show loading indicator
+                    } else if (snapshot.hasError || snapshot.data == null) {
+                      return const Icon(Icons.error, color: Colors.red); // Show error icon
+                    } else {
+                      return SvgPicture.network(
+                        snapshot.data!,
+                        placeholderBuilder: (context) =>
+                            CircularProgressIndicator(),
+                        height: 40,
+                        width: 40,
+                      );
+                    }
+                  },
+                ),
                 onTap: () {
                   // Navigate to the Country Details screen
                   Navigator.push(

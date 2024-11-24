@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
 import '../models/country.dart';
 import '../models/population.dart';
 
@@ -39,6 +37,7 @@ class CountryDetails extends StatelessWidget {
               children: [
                 for (var population in populationCounts)
                   Text('Year: ${population['year']}, Population: ${population['value']}'),
+
 
               ],
             )

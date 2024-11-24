@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../models/country.dart';
+import '../models/flags.dart';
 import '../models/population.dart';
 
 Future<List<Country>> fetchCountriesAndCapitals() async {
@@ -33,14 +34,24 @@ Future<List<CityPopulation>> fetchCitiesAndPopulation() async {
   }
 }
 
-void main() {
-    // final cityPopulation = await fetchCitiesAndPopulation();
-    // var one = cityPopulation[0].populationCounts;
-    // print(one?[0]);
-    // for (var city in cityPopulation) {
-    //   final populations = city.getPopulation();
-    //   for (var pop in populations) {
-    //     print('Population: $pop');
+Future<String> fetchFlag(String country) async {
+  var url = 'https://countriesnow.space/api/v0.1/countries/flag/images/q?country=' + country;
+  print(url);
 
+  final response = await http.get(Uri.parse(url),
+  );
 
+  if (response.statusCode >= 200) {
+    final data = json.decode(response.body);
+    // print(data['data']['flag']);
+    return data['data']['flag'];
+  } else {
+
+    throw Exception('Failed to load countries and capitals');
+
+  }
 }
+
+// void main()  {
+//   fetchFlag("Albania");
+// }
