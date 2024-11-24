@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../models/country.dart';
-import '../models/flags.dart';
 import '../models/population.dart';
 
 Future<List<Country>> fetchCountriesAndCapitals() async {

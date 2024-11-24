@@ -9,7 +9,7 @@ class CountryList extends StatefulWidget {
   final List<Country> countries;
   final List<CityPopulation> populationData;
 
-  CountryList({required this.countries, required this.populationData});
+  const CountryList({super.key, required this.countries, required this.populationData});
 
   @override
   _CountryListState createState() => _CountryListState();
@@ -67,14 +67,14 @@ class _CountryListState extends State<CountryList> {
                   future: fetchFlag(country.name ?? ''),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return CircularProgressIndicator(); // Show loading indicator
+                      return const CircularProgressIndicator(); // Show loading indicator
                     } else if (snapshot.hasError || snapshot.data == null) {
                       return const Icon(Icons.error, color: Colors.red); // Show error icon
                     } else {
                       return SvgPicture.network(
                         snapshot.data!,
                         placeholderBuilder: (context) =>
-                            CircularProgressIndicator(),
+                            const CircularProgressIndicator(),
                         height: 40,
                         width: 40,
                       );
