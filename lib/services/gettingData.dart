@@ -34,7 +34,7 @@ Future<List<CityPopulation>> fetchCitiesAndPopulation() async {
 
 Future<String> fetchFlag(String country) async {
   var url = 'https://countriesnow.space/api/v0.1/countries/flag/images/q?country=' + country;
-  print(url);
+  // print(url);
 
   final response = await http.get(Uri.parse(url),
   );

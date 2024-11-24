@@ -7,7 +7,7 @@ class CountryDetails extends StatelessWidget {
   final Country country;
   final List<CityPopulation> populationData;
 
-  CountryDetails({required this.country, required this.populationData});
+  const CountryDetails({required this.country, required this.populationData});
 
   @override
   Widget build(BuildContext context) {
@@ -38,11 +38,9 @@ class CountryDetails extends StatelessWidget {
               children: [
                 for (var population in populationCounts)
                   Text('Year: ${population['year']}, Population: ${population['value']}'),
-
-
               ],
             )
-                : Text('No population data available'),
+                : const Text('No population data available'),
           );
         },
       ),

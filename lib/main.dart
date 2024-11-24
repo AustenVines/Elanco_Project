@@ -35,17 +35,17 @@ class _MyAppState extends State<MyApp> {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Country Population Visualizer'),
+          title: const Text('Country Population Visualizer'),
         ),
         body: FutureBuilder<List<Country>>(
           future: _countries,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             } else if (snapshot.hasError) {
               return Center(child: Text('Error: ${snapshot.error}'));
             } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-              return Center(child: Text('No countries found.'));
+              return const Center(child: Text('No countries found.'));
             }
 
             final countries = snapshot.data!;
@@ -53,11 +53,11 @@ class _MyAppState extends State<MyApp> {
               future: _populationData,
               builder: (context, popSnapshot) {
                 if (popSnapshot.connectionState == ConnectionState.waiting) {
-                  return Center(child: CircularProgressIndicator());
+                  return const Center(child: CircularProgressIndicator());
                 } else if (popSnapshot.hasError) {
                   return Center(child: Text('Error: ${popSnapshot.error}'));
                 } else if (!popSnapshot.hasData || popSnapshot.data!.isEmpty) {
-                  return Center(child: Text('No population data found.'));
+                  return const Center(child: Text('No population data found.'));
                 }
 
                 final populationData = popSnapshot.data!;
