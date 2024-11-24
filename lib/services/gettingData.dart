@@ -10,7 +10,6 @@ Future<List<Country>> fetchCountriesAndCapitals() async {
   if (response.statusCode == 200) {
     final data = json.decode(response.body) as Map<String, dynamic>;
     final countryList = data['data'] as List<dynamic>;
-    // print(countryList[0]['name']);
     return countryList.map((json) => Country.fromJson(json)).toList();
   } else {
 

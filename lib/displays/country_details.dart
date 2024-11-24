@@ -34,6 +34,7 @@ class CountryDetails extends StatelessWidget {
             subtitle: populationCounts != null && populationCounts.isNotEmpty
                 ? Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+
               children: [
                 for (var population in populationCounts)
                   Text('Year: ${population['year']}, Population: ${population['value']}'),
